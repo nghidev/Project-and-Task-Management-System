@@ -204,7 +204,7 @@
                             '<button type="submit" class="btn btn-danger btn-sm delete" title="Delete" onclick="return confirm(\'Bạn có chắc muốn xóa người dùng ' + user.name + ' khỏi dự án?\')"><i class="material-icons">delete</i></button>' +
                         '</form>';
                     
-                    tableBody.append(
+                    tableBody.append( 
                         '<tr>' +
                             '<td>' + (index + 1) + '</td>' +
                             '<td>' + user.name + '</td>' +

@@ -71,7 +71,15 @@ Route::middleware(['admin', 'checkUserRole:1'])->group(function () {
     Route::get('/projects/edit/{id}', [ProjectController::class, 'edit'])->name('projects.edit');
     Route::post('/projects/store', [ProjectController::class, 'store'])->name('projects.store');
     Route::post('/projects/update/{id}', [ProjectController::class, 'update'])->name('projects.update');
-
+    Route::get('/get-users-by-unit/{unitId}', [ProjectController::class, 'getUsersByUnit']);
+    Route::get('/projects/{project}/users', [ProjectController::class, 'viewUsers'])->name('projects.view-users');
+    // Route::post('/projects/{project}/addUsers', [ProjectController::class, 'addUsers'])->name('projects.add-users');
+    // Route::get('/projects/{project}/create-users', [ProjectController::class, 'createUserForm'])->name('projects.create-users');
+    Route::post('/projects/{project}/remove-user/{user_id}', [ProjectController::class, 'removeUserFromProject'])->name('projects.remove-user');
+    // Route::post('/projects/{project}/addUsers', [ProjectController::class, 'addUsers'])->name('projects.add-users');
+    Route::get('/projects/{project}/create-users', [ProjectController::class, 'createUserForm'])->name('projects.create-users');
+    Route::post('/projects/{project}/addUsers', [ProjectController::class, 'addUsers'])->name('projects.add-users');
+    Route::get('/projects/{project}/users', [ProjectController::class, 'getProjectUsers'])->name('projects.get-users');
 
     // Quản lý nhóm cơ
     Route::get('/muscle_groups/index', [MuscleGroupsController::class, 'index'])->name('muscle_groups.index');

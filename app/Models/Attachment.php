@@ -11,7 +11,9 @@ class Attachment extends Model
 
     protected $fillable = [
         'task_id',
-        'file_attachment',
+        'filename',
+        'filepath',
+        'filetype',
     ];
 
     public function task()

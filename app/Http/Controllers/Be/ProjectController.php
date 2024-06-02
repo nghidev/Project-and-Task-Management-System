@@ -166,4 +166,4 @@ class ProjectController extends Controller
         $project->load('users');
         return response()->json($project->users);
     }
-}
+} 

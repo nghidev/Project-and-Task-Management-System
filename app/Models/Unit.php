@@ -20,7 +20,7 @@ class Unit extends Model
     {
         return $this->belongsTo(User::class, 'create_by');
     }
-
+ 
     // Phương thức quan hệ với nhiều User qua bảng trung gian
     public function users()
     {
