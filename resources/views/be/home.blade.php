@@ -65,6 +65,9 @@
                                 <span class="text-muted small pt-2 ps-1">Số lượng công việc: {{ $project->tasks->count() }}</span>
                               </div>
                             </div>
+                            <a href="{{ route('tasks.index', ['project' => $project->id]) }}">
+                                <button type="button" class="btn btn-primary mt-3">Xem công việc</button>
+                            </a>
                             <button type="button" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#addUserModal" data-project-id="{{ $project->id }}">
                                 Thêm người dùng
                             </button>

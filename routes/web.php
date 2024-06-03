@@ -82,11 +82,19 @@ Route::middleware(['admin', 'checkUserRole:1'])->group(function () {
     Route::post('/projects/{project}/addUsers', [ProjectController::class, 'addUsers'])->name('projects.add-users');
     Route::get('/projects/{project}/users', [ProjectController::class, 'getProjectUsers'])->name('projects.get-users');
 
+    // Route cho Task
 
     Route::get('/tasks/create', [TaskController::class, 'create'])->name('tasks.create');
     Route::post('/tasks/store', [TaskController::class, 'store'])->name('tasks.store');
     Route::get('/projects/{project}/tasks', [TaskController::class, 'index'])->name('tasks.index');
-
+    Route::get('/tasks/{task}', [TaskController::class, 'show'])->name('tasks.show'); // Ensure this line is present
+    Route::put('/tasks/{task}', [TaskController::class, 'update'])->name('tasks.update');
+    Route::delete('/tasks/{task}/attachments/{attachment}', [TaskController::class, 'destroyAttachment'])->name('attachments.destroy');
+    Route::put('tasks/{task}/status', [TaskController::class, 'updateStatus'])->name('tasks.updateStatus');
+    Route::put('tasks/{task}/due-date', [TaskController::class, 'updateDueDate'])->name('tasks.updateDueDate');
+    Route::put('tasks/{task}/assigned-user', [TaskController::class, 'updateAssignedUser'])->name('tasks.updateAssignedUser');
+    Route::get('tasks/{task}/attachments/{attachment}/download', [TaskController::class, 'downloadAttachment'])->name('tasks.downloadAttachment');
+    
     Route::get('/profile/index', [UserController::class, 'index'])->name('profile.index');
     Route::get('/profile/create', [UserController::class, 'create'])->name('profile.create');
     Route::get('/profile/edit/{id}', [UserController::class, 'edit'])->name('profile.edit');
