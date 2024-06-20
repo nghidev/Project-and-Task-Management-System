@@ -29,7 +29,7 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
-        return view('be.users.index', compact('users'));
+        return view('Back_End.users.index', compact('users'));
     }
 
     /**
@@ -121,7 +121,7 @@ class UserController extends Controller
     {
         $Title = 'NGƯỜI DÙNG';
         $userEdit = User::find($id);
-        return view('be.users.form', compact('userEdit', 'Title'));
+        return view('Back_End.users.form', compact('userEdit', 'Title'));
     }
 
     /**
@@ -194,7 +194,7 @@ class UserController extends Controller
 
         $users = User::all()->where('role', 3);
         
-        return view('be.assignment.index', compact('users'));
+        return view('Back_End.assignment.index', compact('users'));
     }
 
     public function assignment($id)
@@ -229,7 +229,7 @@ class UserController extends Controller
             $coach[$user->id] = $user->name;
         }
         // dd($client->coachedSessions->coach_id);
-        return view('be.assignment.form', compact('coach', 'client', 'temp'));
+        return view('Back_End.assignment.form', compact('coach', 'client', 'temp'));
     }
 
     public function assignmentUpdate(Request $request)
@@ -281,6 +281,6 @@ class UserController extends Controller
             }
         }
         // dd($trainedUsers);
-        return view('be.coach.listuser', compact('trainedUsers'));
+        return view('Back_End.coach.listuser', compact('trainedUsers'));
     }
 }

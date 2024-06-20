@@ -17,13 +17,20 @@ class Project extends Model
 
     public function unit()
     {
-        return $this->belongsTo(Unit::class); 
+        return $this->belongsTo(Unit::class);
     }
 
+    // public function users()
+    // {
+    //     return $this->belongsToMany(User::class, 'project_user');
+    // }
+
+    // app/Models/Project.php
     public function users()
     {
-        return $this->belongsToMany(User::class, 'project_user');
+        return $this->belongsToMany(User::class, 'project_user', 'project_id', 'user_id');
     }
+
 
     public function tasks()
     {

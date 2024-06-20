@@ -30,7 +30,7 @@
                     <a href="">
                       <button type="button" class="btn btn-primary me-2">Xem chi tiết</button>
                     </a>
-                    @if (Auth::user()->role == 1)
+                    @if (Auth::user()->role == 1 || Auth::user()->role == 2)
                       <a href="{{ route('units.view-users', ["unit" => $unit->id]) }}">
                         <button type="button" class="btn btn-primary">Thành viên ({{ $unit->users->count() }})</button>
                       </a>
@@ -68,12 +68,14 @@
                             <a href="{{ route('tasks.index', ['project' => $project->id]) }}">
                                 <button type="button" class="btn btn-primary mt-3">Xem công việc</button>
                             </a>
-                            <button type="button" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#addUserModal" data-project-id="{{ $project->id }}">
-                                Thêm người dùng
-                            </button>
-                            <button type="button" class="btn btn-secondary mt-3" data-bs-toggle="modal" data-bs-target="#viewUsersModal" data-project-id="{{ $project->id }}">
-                                Xem người dùng
-                            </button>
+                            @if (Auth::user()->role != 3)
+                              <button type="button" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#addUserModal" data-project-id="{{ $project->id }}">
+                                  Thêm người dùng
+                              </button>
+                              <button type="button" class="btn btn-secondary mt-3" data-bs-toggle="modal" data-bs-target="#viewUsersModal" data-project-id="{{ $project->id }}">
+                                  Xem người dùng
+                              </button>
+                            @endif
                           </div>
 
                         </div>

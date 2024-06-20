@@ -13,6 +13,7 @@ class Report extends Model
         'task_id',
         'user_id',
         'description',
+        'status', // thêm cột status vào đây
     ];
 
     public function task()

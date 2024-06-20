@@ -38,6 +38,6 @@ class AdminController extends Controller
         }
 
         // Trả về view với các units và dự án liên quan
-        return view('be.home', compact('units', 'users'));
+        return view('Back_End.home', compact('units', 'users'));
     }
 }

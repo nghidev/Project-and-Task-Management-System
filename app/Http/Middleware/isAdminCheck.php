@@ -11,20 +11,16 @@ class isAdminCheck
     public function handle(Request $request, Closure $next)
     {
         $user = Auth::user();
+
         if ($user) {
-            if ($user->role === 1 || $user->role === 2) {
-                // if($user->role === 1 ){
-                    return $next($request);
-                // }
-            }
-            else{
+            if (in_array($user->role, [1, 2, 3])) {
+                return $next($request);
+            } else {
                 Auth::logout();
-                return redirect()->back();
+                return redirect('/showLoginForm');
             }
-        }
-        else{
+        } else {
             return redirect('/showLoginForm');
         }
-        
     }
 }

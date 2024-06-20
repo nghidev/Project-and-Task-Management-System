@@ -12,11 +12,13 @@
                             <h2>Quản lý thành viên <b>{{ $unit->name }}</b></h2>
                         </div>
                         <div class="col-sm-4">
-                            <a href="{{ route('units.create-users', ['unit' => $unit->id]) }}">
-                                <button class="btn btn-secondary"><i class="material-icons"></i> <span>Add New
-                                        User</span></button>
-                            </a>
-                            {{-- <button class="btn btn-secondary"><i class="material-icons"></i> <span>Export to Excel</span></button>                       --}}
+                            @if (auth()->user()->role != 2 && auth()->user()->role != 3)
+                                <a href="{{ route('units.create-users', ['unit' => $unit->id]) }}">
+                                    <button class="btn btn-secondary"><i class="material-icons"></i> <span>Add New User</span></button>
+                                </a>
+                            @else
+                                <button class="btn btn-secondary disabled" disabled><i class="material-icons"></i> <span>Add New User</span></button>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -25,9 +27,7 @@
                         <tr>
                             <th>#</th>
                             <th>Name</th>
-                            {{-- <th>Date Created</th> --}}
                             <th>Role</th>
-                            {{-- <th>Status</th> --}}
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -36,25 +36,20 @@
                             <tr>
                                 <td>{{ $index + 1 }}</td>
                                 <td>{{ $user->name }}</td>
-
-                                {{-- <td><a href="#"><img src="/examples/images/avatar/{{ $user->id }}.jpg" class="avatar" alt="Avatar"> {{ $user->name }}</a></td> --}}
-                                {{-- <td>{{ $user->created_at->format('d/m/Y') }}</td>                         --}}
                                 <td>{{ $user->role }}</td>
-                                {{-- <td><span class="status text-success">•</span> Active</td> --}}
                                 <td>
-                                    {{-- <button class="btn btn-info btn-sm settings" title="Settings"><i class="material-icons">settings</i></button> --}}
-                                    @if ($user->role == 1)
-                                        <button class="btn btn-danger btn-sm delete disabled" title="Delete" disabled><i
-                                                class="material-icons">delete</i></button>
+                                    @if (auth()->user()->role == 2 || auth()->user()->role == 3)
+                                        <button class="btn btn-danger btn-sm delete disabled" title="Delete" disabled>
+                                            <i class="material-icons">delete</i>
+                                        </button>
                                     @else
-                                        <form
-                                            action="{{ route('units.remove-user', ['unit' => $unit->id, 'user_id' => $user->id]) }}"
-                                            method="POST" class="d-inline">
+                                        <form action="{{ route('units.remove-user', ['unit' => $unit->id, 'user_id' => $user->id]) }}" method="POST" class="d-inline">
                                             @csrf
                                             @method('POST')
                                             <button type="submit" class="btn btn-danger btn-sm delete" title="Delete"
-                                                onclick="return confirm('Bạn có chắc muốn xóa người dùng {{ $user->name }} khỏi không gian làm việc?')"><i
-                                                    class="material-icons">delete</i></button>
+                                                onclick="return confirm('Bạn có chắc muốn xóa người dùng {{ $user->name }} khỏi không gian làm việc?')">
+                                                <i class="material-icons">delete</i>
+                                            </button>
                                         </form>
                                     @endif
                                 </td>

@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model; 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\DB;
 
@@ -52,5 +52,17 @@ class Task extends Model
         ];
 
         return $statuses[$this->status];
+    }
+
+    // app/Models/Task.php
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    public function reports()
+    {
+        return $this->hasMany(Report::class);
     }
 }
